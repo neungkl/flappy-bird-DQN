@@ -7,9 +7,9 @@ GRID_HEIGHT = 3
 ACTION_SIZE = 4
 
 grid_world = [
-  ['', '', '', 'G'],
-  ['', 'X', '', 'R'],
-  ['', '', '', '']
+  "---G",
+  "-X-R",
+  "----"
 ]
 
 Q = np.zeros((GRID_HEIGHT, GRID_WIDTH, ACTION_SIZE))
@@ -29,7 +29,7 @@ def is_correct_move(x, y, a):
   return grid_world[new_y][new_x] != 'X'
 
 def is_end_game(x, y):
-  return grid_world[y][x] != ''
+  return grid_world[y][x] != '-'
 
 def select_move(x, y):
   action_order = np.argsort(Q[y][x])
@@ -45,7 +45,7 @@ def random_move(x, y):
       return a, x + action_dir[a][1], y + action_dir[a][0]
 
 def calculate_reward(x, y):
-  if grid_world[y][x] == '':
+  if grid_world[y][x] == '-':
     return -0.01
   elif grid_world[y][x] == 'G':
     return 1.0
@@ -58,7 +58,7 @@ explore_rate_decay = 0.99
 learning_rate = 0.1
 discount_factor = 0.99
 
-for update_t in range(10):
+for update_t in range(1000):
   state_x = 0
   state_y = GRID_HEIGHT - 1
 
