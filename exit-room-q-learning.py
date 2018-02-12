@@ -6,11 +6,11 @@ GRID_HEIGHT = 3
 
 ACTION_SIZE = 4
 
-grid_world = [
+grid_world = np.array([
   "---G",
   "-X-R",
   "----"
-]
+])
 
 Q = np.zeros((GRID_HEIGHT, GRID_WIDTH, ACTION_SIZE))
 
